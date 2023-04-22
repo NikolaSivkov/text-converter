@@ -9,7 +9,7 @@
             font-family: Arial, sans-serif;
             margin: 30px;
         }
-      
+
         textarea {
             width: 100%;
             min-height: 100px;
@@ -70,8 +70,12 @@
             const base64Output = btoa(inputText);
             document.getElementById("base64Output").value = base64Output;
 
-            const ascii85Output = window.a85.encode(inputText);
-            document.getElementById("ascii85Output").value = ascii85Output;
+            if (window.a85) {
+                const ascii85Output = window.a85.encode(inputText);
+                document.getElementById("ascii85Output").value = ascii85Output;
+            } else {
+                document.getElementById("ascii85Output").value = "ASCII85 library not loaded";
+            }
 
             const charDecOutput = inputText.split('').map(char => char.charCodeAt(0)).join(' ');
             document.getElementById("charDecOutput").value = charDecOutput;
