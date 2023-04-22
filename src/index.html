@@ -46,8 +46,8 @@
     <textarea id="base32Output" readonly></textarea>
     <p>Base64:</p>
     <textarea id="base64Output" readonly></textarea>
-    <p>ASCII85:</p>
-    <textarea id="ascii85Output" readonly></textarea>
+    <p>Base85:</p>
+    <textarea id="base85Output" readonly></textarea>
     <p>Char / Dec:</p>
     <textarea id="charDecOutput" readonly></textarea>
 
@@ -70,17 +70,17 @@
             const base64Output = btoa(inputText);
             document.getElementById("base64Output").value = base64Output;
 
-            if (window.a85) {
-                const ascii85Output = window.a85.encode(inputText);
-                document.getElementById("ascii85Output").value = ascii85Output;
+            if (window.base85) {
+                const base85Output = window.base85.encode(inputText);
+                document.getElementById("base85Output").value = base85Output;
             } else {
-                document.getElementById("ascii85Output").value = "ASCII85 library not loaded";
+                document.getElementById("base85Output").value = "Base85 library not loaded";
             }
 
             const charDecOutput = inputText.split('').map(char => char.charCodeAt(0)).join(' ');
             document.getElementById("charDecOutput").value = charDecOutput;
         }
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ascii85/1.0.0/ascii85.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/base85@0.1.4/browser.js"></script>
 </body>
 </html>
