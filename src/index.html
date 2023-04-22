@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+      
+        textarea {
+            width: 100%;
+            min-height: 100px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Text Converter</h1>
+    <p>Enter text to convert:</p>
+    <textarea id="inputText"></textarea>
+    <button onclick="convertText()">Convert</button>
+    <p>Binary:</p>
+    <textarea id="binaryOutput" readonly></textarea>
+    <p>Octal:</p>
+    <textarea id="octalOutput" readonly></textarea>
+    <p>Hexadecimal:</p>
+    <textarea id="hexOutput" readonly></textarea>
+    <p>Base32:</p>
+    <textarea id="base32Output" readonly></textarea>
+    <p>Base64:</p>
+    <textarea id="base64Output" readonly></textarea>
+    <p>ASCII85:</p>
+    <textarea id="ascii85Output" readonly></textarea>
+    <p>Char / Dec:</p>
+    <textarea id="charDecOutput" readonly></textarea>
+
+    <script>
+        function convertText() {
+            const inputText = document.getElementById("inputText").value;
+
+            const binaryOutput = inputText.split('').map(char => char.charCodeAt(0).toString(2)).join(' ');
+            document.getElementById("binaryOutput").value = binaryOutput;
+
+            const octalOutput = inputText.split('').map(char => char.charCodeAt(0).toString(8)).join(' ');
+            document.getElementById("octalOutput").value = octalOutput;
+
+            const hexOutput = inputText.split('').map(char => char.charCodeAt(0).toString(16)).join(' ');
+            document.getElementById("hexOutput").value = hexOutput;
+
+            const base32Output = btoa(inputText).replace('+', '-').replace('/', '_');
+            document.getElementById("base32Output").value = base32Output;
+
+            const base64Output = btoa(inputText);
+            document.getElementById("base64Output").value = base64Output;
+
+            const ascii85Output = window.a85.encode(inputText);
+            document.getElementById("ascii85Output").value = ascii85Output;
+
+            const charDecOutput = inputText.split('').map(char => char.charCodeAt(0)).join(' ');
+            document.getElementById("charDecOutput").value = charDecOutput;
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ascii85/1.0.0/ascii85.min.js"></script>
+</body>
+</html>
